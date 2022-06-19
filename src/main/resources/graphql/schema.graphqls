@@ -1,0 +1,24 @@
+type Query {
+    findAllUsers: [UserResponse]
+    findUserById(id: ID): UserResponse
+}
+
+ type Mutation {
+     createUser(req: UserRequest): UserResponse
+}
+
+type UserResponse {
+    id: ID,
+    username: String,
+    firstName: String,
+    lastName: String,
+    email: String
+}
+
+input UserRequest {
+    username: String,
+    firstName: String,
+    lastName: String,
+    email: String
+}
+
