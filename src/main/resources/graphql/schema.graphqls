@@ -3,8 +3,8 @@ type Query {
     findUserById(id: ID): UserResponse
 }
 
- type Mutation {
-     createUser(req: UserRequest): UserResponse
+type Mutation {
+    createUser(req: UserRequest): UserResponse
 }
 
 type UserResponse {

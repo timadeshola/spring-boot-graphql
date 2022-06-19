@@ -2,8 +2,8 @@ package com.sbgl.springbootgraphql.service;
 
 import com.sbgl.springbootgraphql.model.request.UserRequest;
 import com.sbgl.springbootgraphql.model.response.UserResponse;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * Project title: spring-boot-graphql
@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface UserService {
 
-    public List<UserResponse> findAllUsers();
+    public Flux<UserResponse> findAllUsers();
 
-    public UserResponse createUser(UserRequest request);
+    public Mono<UserResponse> createUser(UserRequest request);
 
-    public UserResponse findUserById(Long id);
+    public Mono<UserResponse> findUserById(Long id);
 }

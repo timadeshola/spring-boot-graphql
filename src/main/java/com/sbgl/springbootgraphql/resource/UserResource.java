@@ -3,19 +3,16 @@ package com.sbgl.springbootgraphql.resource;
 import com.sbgl.springbootgraphql.model.request.UserRequest;
 import com.sbgl.springbootgraphql.model.response.UserResponse;
 import com.sbgl.springbootgraphql.service.UserService;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.Arguments;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
-import java.io.Serializable;
 
 /**
  * Project title: spring-boot-graphql
@@ -33,17 +30,17 @@ public class UserResource {
 
     @QueryMapping
     public Flux<UserResponse> findAllUsers() {
-        return Flux.fromIterable(userService.findAllUsers());
+        return userService.findAllUsers();
     }
 
     @MutationMapping
     public Mono<UserResponse> createUser(@Argument("req") @Valid UserRequest request) {
         log.info("Request: {}", request.toString());
-        return Mono.just(userService.createUser(request));
+        return userService.createUser(request);
     }
 
     @QueryMapping
     public Mono<UserResponse> findUserById(@Argument Long id) {
-        return Mono.just(userService.findUserById(id));
+        return userService.findUserById(id);
     }
 }
